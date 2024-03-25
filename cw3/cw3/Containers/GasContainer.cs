@@ -11,10 +11,9 @@ public class GasContainer : Container, IHazardNotifier
         double height,
         double containerWeight,
         double depth,
-        string serialNumber,
         double maxCargoWeight,
         double pressure ) 
-        : base(cargoWeight, height,containerWeight, depth, serialNumber, maxCargoWeight)
+        : base(cargoWeight, height,containerWeight, depth, maxCargoWeight)
     {
         Pressure = pressure;
     }
@@ -32,5 +31,10 @@ public class GasContainer : Container, IHazardNotifier
     public void NotifyDangerSituation(string serialNumber)
     {
         Console.WriteLine($"$Niebezpieczna sytuacja w {serialNumber}");
+    }
+
+    public override string Info()
+    {
+        return "GAS " + base.Info() + $" ,pressure = {Pressure}";
     }
 }

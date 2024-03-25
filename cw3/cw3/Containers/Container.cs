@@ -4,21 +4,33 @@ using IContainer = cw3.Interfaces.IContainer;
 
 namespace cw3.Containers;
 
-public class Container(
-    double cargoWeight,
-    double height,
-    double containerWeight,
-    double depth,
-    string serialNumber,
-    double maxCargoWeight)
-    : IContainer
+public class Container: IContainer
 {
-    public double CargoWeight { get; set; } = cargoWeight;
-    public double Height { get; set; } = height;
-    public double ContainerWeight { get; set; } = containerWeight;
-    public double Depth { get; set; } = depth;
-    public string SerialNumber { get; set; } = serialNumber;
-    protected double MaxCargoWeight { get; set; } = maxCargoWeight;
+    public Container(string serialNumber,double cargoWeight, double height, double containerWeight, double depth, double maxCargoWeight)
+    {
+        CargoWeight = cargoWeight;
+        Height = height;
+        ContainerWeight = containerWeight;
+        Depth = depth;
+        MaxCargoWeight = maxCargoWeight;
+        SerialNumber = serialNumber;
+    }
+    public Container(double cargoWeight, double height, double containerWeight, double depth, double maxCargoWeight)
+    {
+        CargoWeight = cargoWeight;
+        Height = height;
+        ContainerWeight = containerWeight;
+        Depth = depth;
+        MaxCargoWeight = maxCargoWeight;
+        SerialNumber = GenerateSerialNumber();
+    }
+
+    public double CargoWeight { get; set; }
+    public double Height { get; set; } 
+    public double ContainerWeight { get; set; }
+    public double Depth { get; set; } 
+    public string SerialNumber { get; set; }
+    protected double MaxCargoWeight { get; set; }
 
     public virtual void Unload()
     {
@@ -42,5 +54,10 @@ public class Container(
         Random rand = new Random();
         int randomNumber = rand.Next(1, 1000);
         return $"KON-C-{randomNumber}";
+    }
+
+    public virtual string Info()
+    {
+        return $"serial number = {SerialNumber}, cargo weight = {CargoWeight}, height = {Height}, container weight = {ContainerWeight}, depth = {Depth}, max cargo weight = {MaxCargoWeight}";
     }
 }

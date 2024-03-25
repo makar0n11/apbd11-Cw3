@@ -13,11 +13,10 @@ public class RefrigeratedContainer : Container
         double height,
         double containerWeight,
         double depth,
-        string serialNumber,
         double maxCargoWeight,
         Product product,
         double temperature) 
-        : base(cargoWeight, height,containerWeight, depth, serialNumber, maxCargoWeight)
+        : base(cargoWeight, height,containerWeight, depth,  maxCargoWeight)
     {
         if (CheckTemperature(product, temperature))
         {
@@ -88,6 +87,10 @@ public class RefrigeratedContainer : Container
                 Console.WriteLine("noSuchProduct");
                 return false;
         }
+    }
+    public override string Info()
+    {
+        return "REFRIGERATED " + base.Info() + $" ,product = {Product} ,temperature = {Temperature}";
     }
     
 

@@ -12,10 +12,9 @@ public LiquidContainer(
         double height,
         double containerWeight,
         double depth,
-        string serialNumber,
         double maxCargoWeight,
         bool isDangerous ) 
-        : base(cargoWeight, height,containerWeight, depth, serialNumber, maxCargoWeight)
+        : base(cargoWeight, height,containerWeight, depth, maxCargoWeight)
     {
         IsDangerous = isDangerous;
     }
@@ -51,6 +50,10 @@ public LiquidContainer(
     public void NotifyDangerSituation(string serialNumber)
     {
         Console.WriteLine($"$Niebezpieczna sytuacja w {serialNumber}");
+    }
+    public override string Info()
+    {
+        return "LIQUID " + base.Info() + $" ,dangerous = {IsDangerous}";
     }
 }
 
